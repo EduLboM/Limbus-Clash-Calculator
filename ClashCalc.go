@@ -182,7 +182,7 @@ func main() {
 	fmt.Scan(&DistintorIn[3])
 	fmt.Println("Paralyze? (0 for none)")
 	fmt.Scan(&DistintorIn[4])
-	fmt.Println("Echoes of The Manor? (0 para não, 1 para sim)")
+	fmt.Println("Echoes of The Manor/ Impending Ruin? (0 for no, 1 for yes)")
 	fmt.Scan(&DistintorIn[5])
 	fmt.Println("Tremor - Chains? (0 for none)")
 	fmt.Scan(&DistintorIn[6])
