@@ -1,74 +1,45 @@
-⏰🚌 Limbus Company Clash Simulation Program 🔥⛓️
+Welcome to the Limbus Company Clashing Calculator! This program is designed to calculate the probability of victory in a game called Limbus Company. Let’s dive into how to use this program in a fun and engaging way! 🎮✨
 
+Program Description 📝
+This program simulates confrontations between allies and enemies, taking into account the base attack power, the number of coins, and the sanity of the characters. During confrontations, attacks are resolved in rounds where the character with lower power loses a coin until one side runs out of coins. The chance of coins landing heads is influenced by sanity, which ranges from -45% to +45%.
 
--> Overview
+Key Features 🔍
+Power Calculation: The attack power is calculated based on the base power and the number of coins.
+Monte Carlo Simulations: The program performs multiple simulations to estimate win probabilities.
+Clear Results: Displays final win probabilities for both allies and enemies.
 
+How to Use the Program 🚀
+Run the Program: Execute the code in your Julia programming environment.
+Input Ally Data:
+Base Power (BP): Your character's initial power.
+Number of Coins (CN): How many coins you have.
+Coin Power (CP): The value each coin adds to your power.
+Sanity (SN): A value that influences the chance of coins landing heads.
+Input Enemy Data:
+Enemy Base Power (BPEnemy).
+Number of Coins for Enemy (CNEnemy).
+Coin Power for Enemy (CPEnemy).
+Enemy Sanity (SNEnemy).
+Set Number of Simulations: It is recommended to run 10,000+ or more simulations for more accurate results.
+View Results: After execution, the program will display the final win probabilities for both you and your enemy. 🏆
 
-This program simulates the clash mechanics in the game Limbus Company using absorbing Markov chains (thanks MusicOnline for the math) to determine the probability of victory for two players based on various in-game factors such as base attack power, buffs, debuffs, coin flips, and sanity levels.
+Example Usage 💡
 
+    LIMBUS COMPANY CLASHING CALCULATOR ⛓️🚂
+    Sinner's Attack 😇
+    What's your base power? 100
+    How many coins do you have? 10
+    What's your coin power? 5
+    What's your sanity? 20
+    Enemy's Attack 👿
+    What's the enemy base power? 90
+    How many coins does the enemy have? 8
+    What's the enemy's coin power? 4
+    What's the enemy's sanity? 15
+    How many simulations? (recommended: 10k+) 10000
+    Final Win Probability:
+    Ally Win Probability: 62.34%
+    Enemy Win Probability: 37.66%
 
--> Features
-
-
-Sanity Calculation: Adjusts the probability of a successful coin flip based on the player's sanity.
-
-Buffs and Debuffs: Accounts for power increases/decreases and special effects like "Declared Duel" and "Tremor-Chains".
-
-
--> Benefits of Using Go
-
-
-Performance: Go provides high performance and efficient memory usage, which is beneficial for running complex simulations.
-
-Concurrency: Go’s powerful concurrency model allows for efficient handling of multiple simulations or processes.
-
-Ease of Use: Go’s syntax and comprehensive standard library make it easier to implement mathematical models and handle user input.
-
-Static Typing: Helps catch errors at compile-time, ensuring the robustness of the simulation program.
-
-
--> Challenges! this is my first real programming project, there were several challenges:
-
-
-Implementing Markov Chains: Translating the mathematical model of absorbing Markov chains into efficient Go code.
-
-Handling Buffs/Debuffs: Accurately modeling the various buffs and debuffs and their impact on the game simulation.
-
-Sanity and Coin Flips: Implementing the dynamic probability changes based on sanity levels and ensuring the simulation reflects these changes correctly.
-
-User Input Management: Creating a user-friendly interface for inputting various game parameters and validating those inputs.
-
-
--> Installation and Usage
-
-
-Prerequisites
-
-Go 1.16 or later
-
-Installation
-
-Clone the Repository:
-
-git clone https://github.com/yourusername/limbus-clash-simulation.git
-
-cd limbus-clash-simulation
-
-Install Dependencies:
-
-go get -u gonum.org/v1/gonum
-
-Run the Program:
-
-go run main.go
-
-
--> Conclusion
-
-
-This project has been an excellent learning experience in both programming and game theory. Implementing a Markov chain model in Go for game simulations has provided valuable insights into the power and efficiency of Go for complex mathematical and statistical computations.
-For further development, additional game mechanics and more sophisticated models can be incorporated to enhance the simulation's accuracy and depth.
-
-Feel free to reach out with any questions or suggestions for improving the program. Thank you for using the Limbus Company Clash Simulation Program!
-
-🏆
+Conclusion 🎉
+You are now ready to use the Limbus Company Clashing Calculator! Have fun simulating battles and discovering your chances of victory! If you have any questions or suggestions, feel free to contribute! 🤗💬
