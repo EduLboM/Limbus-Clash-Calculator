@@ -1,16 +1,20 @@
 Welcome to the Limbus Company Clashing Calculator! ⛓️🚂
+
 This program calculates the probability of victory in the game Limbus Company, now with a brand-new Graphical User Interface (GUI)! 🖥️🎉 Follow the steps below to set up and start exploring your chances of victory in style.
 
 Program Description 📝
+
 The Limbus Company Clashing Calculator simulates battles between allies and enemies by considering each character's base attack power, number of coins, and sanity levels. Battles are resolved in rounds, where characters with lower attack power lose coins until one side runs out. The coin flips (heads or tails) depend on sanity, which ranges from -45% to +45%.
 
 Key Features 🔍
+
 Graphical User Interface (GUI): The new interface makes it easier and more engaging to input your data and view results!
 Power Calculation: Calculates attack power based on base power and coin count.
 Monte Carlo Simulations: Estimates win probabilities through numerous simulated battles.
 Clear Results: Displays final win probabilities for both allies and enemies.
 
 How to Get Started 🚀
+
 Step 1: Download Julia and Required Packages
 Download and install Julia from the official website: JuliaLang.org
 Install the following packages by running these commands in the Julia REPL:
