@@ -1,4 +1,4 @@
-using Distributions, Random
+using Distributions, Random, Gtk
 
 function round_simulation(BPAlly::Int, BPEnemy::Int, CNAlly::Int, CNEnemy::Int, CPAlly::Int, CPEnemy::Int, CHAlly::Float64, CHEnemy::Float64)
     PWAlly = BPAlly + (CPAlly * rand(Binomial(CNAlly, CHAlly)))
@@ -39,43 +39,46 @@ function monte_carlo_final_simulation(SMNumbers::Int, BPAlly::Int, BPEnemy::Int,
     end
 
     CHWNAlly = WNally / SMNumbers
-    CHWNEnemy = WNEnemy / SMNumbers
-
-    return CHWNAlly, CHWNEnemy
+    return CHWNAlly
 end
 
+glade = GtkBuilder(filename="GUI.glade")
+Window = glade["Window"]
+BPAllyInput = glade["BPAllyInput"]
+CNAllyInput = glade["CNAllyInput"]
+CPAllyInput = glade["CPAllyInput"]
+SNAllyInput = glade["SNAllyInput"]
+BPEnemyInput = glade["BPEnemyInput"]
+CNEnemyInput = glade["CNEnemyInput"]
+CPEnemyInput = glade["CPEnemyInput"]
+SNEnemyInput = glade["SNEnemyInput"]
+SMNumberInput = glade["SMNumberInput"]
+Simulation = glade["Simulation"]
+CHWNAllyOutput = glade["CHWNAllyOutput"]
+AllyImage = glade["AllyImage"]
+EnemyImage = glade["EnemyImage"]
 
-println("LIMBUS COMPANY CLASHING CALCULATOR ⛓️🚂")
+function MainChanceCalculator()
+    BPAlly = parse(Int64, get_gtk_property(BPAllyInput, :text, String))
+    CNAlly = parse(Int64, get_gtk_property(CNAllyInput, :text, String))
+    CPAlly = parse(Int64, get_gtk_property(CPAllyInput, :text, String))
+    SNAlly = parse(Int64, get_gtk_property(SNAllyInput, :text, String))
+    CHAlly = 0.5 + (SNAlly / 100)
+    BPEnemy = parse(Int64, get_gtk_property(BPEnemyInput, :text, String))
+    CNEnemy = parse(Int64, get_gtk_property(CNEnemyInput, :text, String))
+    CPEnemy = parse(Int64, get_gtk_property(CPEnemyInput, :text, String))
+    SNEnemy = parse(Int64, get_gtk_property(SNEnemyInput, :text, String))
+    CHEnemy = 0.5 + (SNEnemy / 100)
+    SMNumbers = parse(Int64, get_gtk_property(SMNumberInput, :text, String))
 
-println("\nSinner's Attack 😇")
-println("What's your base power?")
-BPAlly = parse(Int64, readline())
-println("How many coins do you have?")
-CNAlly = parse(Int64, readline())
-println("What's your coin power?")
-CPAlly = parse(Int64, readline())
-println("What's your sanity?")
-SNAlly = parse(Int64, readline())
-CHAlly = 0.5 + (SNAlly / 100)
+    CHWNAlly = monte_carlo_final_simulation(SMNumbers, BPAlly, BPEnemy, CNAlly, CNEnemy, CPAlly, CPEnemy, CHAlly, CHEnemy)
+    CHWNAlly = round(CHWNAlly, sigdigits=5) * 100
+    return CHWNAlly
+end
 
-println("\nEnemy's Attack 👿")
-println("What's the enemy base power?")
-BPEnemy = parse(Int64, readline())
-println("How many coins does the enemy have?")
-CNEnemy = parse(Int64, readline())
-println("What's the enemy's coin power?")
-CPEnemy = parse(Int64, readline())
-println("What's the enemy's sanity?")
-SNEnemy = parse(Int64, readline())
-CHEnemy = 0.5 + (SNEnemy / 100)
+id = signal_connect(Simulation, "button-press-event") do widget, event
+    CHWNAlly = MainChanceCalculator()
+    GAccessor.text(CHWNAllyOutput, "ALLY WIN CHANCE: $(CHWNAlly)%")
+end
 
-println("How many simulations? (recommended: 10k+)")
-SMNumbers = parse(Int64, readline())
-
-CHWNAlly, CHWNEnemy = monte_carlo_final_simulation(SMNumbers, BPAlly, BPEnemy, CNAlly, CNEnemy, CPAlly, CPEnemy, CHAlly, CHEnemy)
-CHWNAlly = round(CHWNAlly, sigdigits=5) * 100
-CHWNEnemy = round(CHWNEnemy, sigdigits=5) * 100
-
-println("\nFinal Win Probability:")
-println("Ally Win Probability: $(CHWNAlly)%")
-println("Enemy Win Probability: $(CHWNEnemy)%")
+showall(Window)
